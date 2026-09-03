@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Shoe Shop</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <h1>Welcome to Online Shoe Shop</h1>
+
+    <div class="product-container">
+
+        {% for shoe in shoes %}
+
+            <div class="product-card">
+
+                {% if shoe.image %}
+                    <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
+                {% endif %}
+
+                <h2>{{ shoe.name }}</h2>
+
+                <p class="category">{{ shoe.category }}</p>
+
+                <p class="price">₹{{ shoe.price }}</p>
+
+                <p>{{ shoe.description }}</p>
+
+                <p>Stock: {{ shoe.stock }}</p>
+
+                <button>Add to Cart</button>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
