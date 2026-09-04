@@ -1,43 +1,317 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-    <title>Online Shoe Shop</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Online Shoe Shop</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+```
+
 </head>
 
 <body>
 
-    <h1>Welcome to Online Shoe Shop</h1>
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+```
+<div class="logo">
+    <span>👟</span> ShoeStore
+</div>
+
+<div class="search-box">
+    <input type="text" placeholder="Search shoes...">
+    <button>🔍</button>
+</div>
+
+<div class="nav-actions">
+    <button class="icon-btn">♡</button>
+    <button class="cart-btn">
+        🛒 Cart <span>0</span>
+    </button>
+    <div class="profile">
+        👤
+    </div>
+</div>
+```
+
+</nav>
+
+<!-- ================= MAIN LAYOUT ================= -->
+
+<div class="dashboard">
+
+```
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <h3>MENU</h3>
+
+    <a href="#" class="active">
+        🏠 Dashboard
+    </a>
+
+    <a href="#">
+        👟 All Shoes
+    </a>
+
+    <a href="#">
+        ⭐ Popular
+    </a>
+
+    <a href="#">
+        🔥 Best Sellers
+    </a>
+
+    <a href="#">
+        🆕 New Arrivals
+    </a>
+
+    <a href="#">
+        💰 Offers
+    </a>
+
+    <div class="sidebar-bottom">
+
+        <a href="#">
+            ⚙ Settings
+        </a>
+
+        <a href="#">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= CONTENT ================= -->
+
+<main class="content">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div>
+            <p class="small-title">WELCOME BACK 👋</p>
+            <h1>Find Your Perfect Shoes</h1>
+            <p class="subtitle">
+                Discover the latest collection of stylish and comfortable shoes.
+            </p>
+        </div>
+
+        <button class="shop-btn">
+            Shop Now →
+        </button>
+
+    </div>
+
+
+    <!-- ================= STATS ================= -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="stat-icon">👟</div>
+            <div>
+                <p>Total Products</p>
+                <h2>{{ shoes|length }}</h2>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🔥</div>
+            <div>
+                <p>Best Sellers</p>
+                <h2>24</h2>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div>
+                <p>Customer Rating</p>
+                <h2>4.8</h2>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🚚</div>
+            <div>
+                <p>Free Delivery</p>
+                <h2>₹999+</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= CATEGORY ================= -->
+
+    <div class="section-header">
+
+        <div>
+            <h2>Shop By Category</h2>
+            <p>Choose your favourite style</p>
+        </div>
+
+        <a href="#">View All →</a>
+
+    </div>
+
+
+    <div class="categories">
+
+        <button class="category-btn active">
+            All Shoes
+        </button>
+
+        <button class="category-btn">
+            Sneakers
+        </button>
+
+        <button class="category-btn">
+            Running
+        </button>
+
+        <button class="category-btn">
+            Casual
+        </button>
+
+        <button class="category-btn">
+            Sports
+        </button>
+
+        <button class="category-btn">
+            Formal
+        </button>
+
+    </div>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <div class="section-header products-heading">
+
+        <div>
+            <h2>Featured Collection</h2>
+            <p>Explore our latest shoes</p>
+        </div>
+
+        <select>
+            <option>Sort by: Latest</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+        </select>
+
+    </div>
+
 
     <div class="product-container">
 
         {% for shoe in shoes %}
 
-            <div class="product-card">
+        <div class="product-card">
+
+            <div class="image-container">
 
                 {% if shoe.image %}
                     <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
+                {% else %}
+                    <div class="no-image">
+                        👟
+                    </div>
                 {% endif %}
 
-                <h2>{{ shoe.name }}</h2>
+                <button class="wishlist">
+                    ♡
+                </button>
 
-                <p class="category">{{ shoe.category }}</p>
-
-                <p class="price">₹{{ shoe.price }}</p>
-
-                <p>{{ shoe.description }}</p>
-
-                <p>Stock: {{ shoe.stock }}</p>
-
-                <button>Add to Cart</button>
+                {% if shoe.stock > 0 %}
+                    <span class="stock-badge">
+                        In Stock
+                    </span>
+                {% else %}
+                    <span class="stock-badge out">
+                        Out of Stock
+                    </span>
+                {% endif %}
 
             </div>
+
+
+            <div class="product-info">
+
+                <p class="category">
+                    {{ shoe.category }}
+                </p>
+
+                <h3>
+                    {{ shoe.name }}
+                </h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>(4.8)</span>
+                </div>
+
+                <p class="description">
+                    {{ shoe.description }}
+                </p>
+
+                <div class="product-bottom">
+
+                    <div>
+                        <p class="price">
+                            ₹{{ shoe.price }}
+                        </p>
+
+                        <p class="stock">
+                            {{ shoe.stock }} available
+                        </p>
+                    </div>
+
+                    {% if shoe.stock > 0 %}
+                        <button class="add-cart">
+                            🛒
+                        </button>
+                    {% else %}
+                        <button class="add-cart disabled">
+                            —
+                        </button>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-products">
+            <h2>No shoes available</h2>
+            <p>Add products from Django Admin.</p>
+        </div>
 
         {% endfor %}
 
     </div>
+
+</main>
+```
+
+</div>
 
 </body>
 </html>
