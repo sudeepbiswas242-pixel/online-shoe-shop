@@ -1,0 +1,460 @@
+
+/* ==========================================
+   SHOESTORE ADMIN PANEL
+========================================== */
+
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --accent: #f093fb;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+#header {
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    padding: 14px 20px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Site title */
+
+#branding h1 {
+    font-weight: 800;
+}
+
+#branding h1 a {
+    color: white !important;
+}
+
+
+/* User tools */
+
+#user-tools {
+    color: white;
+}
+
+#user-tools a {
+    color: white !important;
+}
+
+
+/* ==========================================
+   SIDEBAR / MODULE HEADINGS
+========================================== */
+
+.module h2,
+.module caption {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   LINKS
+========================================== */
+
+a:link,
+a:visited {
+    color: var(--secondary);
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        ) !important;
+
+    color: white !important;
+
+    border: none !important;
+
+    border-radius: 8px;
+
+    padding: 9px 16px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.submit-row input:hover,
+a.button:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+#result_list {
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+
+#result_list thead th {
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+}
+
+
+#result_list thead th a {
+
+    color: white !important;
+}
+
+
+#result_list tbody tr:hover {
+
+    background: #f5f3ff;
+}
+
+
+/* ==========================================
+   FORM INPUTS
+========================================== */
+
+input,
+textarea,
+select {
+
+    border-radius: 7px !important;
+
+    border: 1px solid #dcdcdc !important;
+
+    padding: 8px !important;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+
+    border-color: var(--primary) !important;
+
+    box-shadow:
+        0 0 0 2px rgba(102, 126, 234, 0.15) !important;
+
+    outline: none;
+}
+
+
+/* ==========================================
+   DASHBOARD MODULES
+========================================== */
+
+.module {
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   BREADCRUMBS
+========================================== */
+
+div.breadcrumbs {
+
+    background: #f4f2ff;
+
+    color: #555;
+}
+
+
+div.breadcrumbs a {
+
+    color: var(--secondary) !important;
+}
+
+
+/* ==========================================
+   DELETE BUTTON
+========================================== */
+
+.deletelink {
+
+    border-radius: 7px !important;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 767px) {
+
+    #header {
+        padding: 12px;
+    }
+
+    #branding h1 {
+        font-size: 18px;
+    }
+
+    #user-tools {
+        font-size: 11px;
+    }
+
+}
+
+/* ==========================================
+   SHOESTORE DASHBOARD
+========================================== */
+
+.shoestore-dashboard {
+    margin-bottom: 30px;
+}
+
+.dashboard-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.dashboard-subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+
+/* ==========================================
+   STATISTICS GRID
+========================================== */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+
+/* ==========================================
+   STAT CARD
+========================================== */
+
+.stat-card {
+    min-height: 125px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    background: white;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition: 0.25s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================
+   ICON
+========================================== */
+
+.stat-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   SHOES CARD
+========================================== */
+
+.shoes-card {
+    border-left: 5px solid #667eea;
+}
+
+.shoes-card .stat-icon {
+    background: #eef0ff;
+}
+
+
+/* ==========================================
+   ORDERS CARD
+========================================== */
+
+.orders-card {
+    border-left: 5px solid #764ba2;
+}
+
+.orders-card .stat-icon {
+    background: #f3eaff;
+}
+
+
+/* ==========================================
+   CUSTOMERS CARD
+========================================== */
+
+.customers-card {
+    border-left: 5px solid #f093fb;
+}
+
+.customers-card .stat-icon {
+    background: #fff0fc;
+}
+
+
+/* ==========================================
+   SALES CARD
+========================================== */
+
+.sales-card {
+    border-left: 5px solid #20bf6b;
+}
+
+.sales-card .stat-icon {
+    background: #e9fff3;
+}
+
+
+/* ==========================================
+   NUMBER & LABEL
+========================================== */
+
+.stat-number {
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #222;
+
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 13px;
+
+    color: #777;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        min-height: 105px;
+    }
+
+}
+
+

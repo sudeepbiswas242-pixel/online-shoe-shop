@@ -1,0 +1,162 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - ShoeStore</title>
+
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+</head>
+
+<body>
+
+    <div class="profile-container">
+
+        <div class="profile-box">
+
+
+            <!-- LOGO -->
+
+            <div class="profile-logo">
+                👟 ShoeStore
+            </div>
+
+
+            <!-- PROFILE ICON -->
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1 class="profile-title">
+                My Profile
+            </h1>
+
+
+            <p class="profile-subtitle">
+                Manage your ShoeStore account
+            </p>
+
+
+            <!-- USER INFORMATION -->
+
+            <div class="profile-info">
+
+
+                <!-- USERNAME -->
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        👤
+                    </div>
+
+                    <div class="info-text">
+
+                        <p class="info-label">
+                            Username
+                        </p>
+
+                        <p class="info-value">
+                            {{ user.username }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ✉️
+                    </div>
+
+                    <div class="info-text">
+
+                        <p class="info-label">
+                            Email Address
+                        </p>
+
+                        <p class="info-value">
+                            {% if user.email %}
+                                {{ user.email }}
+                            {% else %}
+                                No email added
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCOUNT STATUS -->
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        🟢
+                    </div>
+
+                    <div class="info-text">
+
+                        <p class="info-label">
+                            Account Status
+                        </p>
+
+                        <p class="info-value">
+                            Active
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="profile-buttons">
+
+
+                <a
+                    href="{% url 'my_orders' %}"
+                    class="profile-btn orders-btn"
+                >
+                    📦 My Orders
+                </a>
+
+
+                <a
+                    href="{% url 'home' %}"
+                    class="profile-btn home-btn"
+                >
+                    🏠 Home
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

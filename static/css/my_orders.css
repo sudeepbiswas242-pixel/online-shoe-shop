@@ -1,0 +1,331 @@
+
+/* ================= MY ORDERS PAGE ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6c63ff, #4facfe, #43e97b);
+}
+
+
+/* ================= MAIN CONTAINER ================= */
+
+.orders-container {
+    min-height: 100vh;
+    padding: 50px 20px;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.20), transparent 30%);
+}
+
+
+/* ================= ORDERS BOX ================= */
+
+.orders-box {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.20);
+}
+
+
+/* ================= LOGO ================= */
+
+.orders-logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+
+    background: linear-gradient(
+        90deg,
+        #6c63ff,
+        #ff4ecd,
+        #ff8a00
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 15px;
+}
+
+
+/* ================= TITLE ================= */
+
+.orders-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.orders-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 35px;
+}
+
+
+/* ================= ORDER CARD ================= */
+
+.order-card {
+    position: relative;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f5f3ff
+    );
+
+    border-radius: 18px;
+
+    padding: 24px;
+    margin-bottom: 20px;
+
+    border: 1px solid #e4ddff;
+
+    box-shadow:
+        0 8px 25px rgba(108, 99, 255, 0.10);
+
+    transition: 0.3s ease;
+
+    overflow: hidden;
+}
+
+
+/* Colourful left border */
+
+.order-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background: linear-gradient(
+        180deg,
+        #6c63ff,
+        #ff4ecd,
+        #ff8a00
+    );
+}
+
+
+.order-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(108, 99, 255, 0.20);
+}
+
+
+/* ================= ORDER HEADER ================= */
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #e8e4ff;
+}
+
+
+.order-id {
+    font-size: 19px;
+    font-weight: 700;
+    color: #333;
+}
+
+
+.order-total {
+    font-size: 21px;
+    font-weight: 800;
+
+    background: linear-gradient(
+        90deg,
+        #6c63ff,
+        #ff4ecd
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ================= ORDER DETAILS ================= */
+
+.order-details {
+    padding-top: 18px;
+}
+
+
+.order-detail {
+    margin-bottom: 12px;
+
+    color: #555;
+
+    line-height: 1.6;
+}
+
+
+.order-detail strong {
+    color: #222;
+}
+
+
+/* ================= STATUS ================= */
+
+.order-status {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding: 8px 16px;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+        90deg,
+        #fff3cd,
+        #ffe69c
+    );
+
+    color: #8a6100;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    border: 1px solid #ffd666;
+}
+
+
+/* ================= EMPTY ORDERS ================= */
+
+.empty-orders {
+    text-align: center;
+
+    padding: 55px 20px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #f3f0ff,
+        #eef8ff
+    );
+}
+
+
+.empty-orders-icon {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+
+.empty-orders h2 {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+
+.empty-orders p {
+    color: #777;
+}
+
+
+/* ================= HOME BUTTON ================= */
+
+.orders-home-btn {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #6c63ff,
+        #8e5cff,
+        #ff4ecd
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px rgba(108, 99, 255, 0.30);
+
+    transition: 0.25s ease;
+}
+
+
+.orders-home-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(108, 99, 255, 0.40);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .orders-container {
+        padding: 20px 12px;
+    }
+
+    .orders-box {
+        padding: 25px 18px;
+        border-radius: 20px;
+    }
+
+    .orders-title {
+        font-size: 26px;
+    }
+
+    .orders-logo {
+        font-size: 29px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-total {
+        font-size: 19px;
+    }
+
+}
+
+
+

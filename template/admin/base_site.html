@@ -1,0 +1,159 @@
+
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+    ShoeStore Admin
+{% endblock %}
+
+
+{% block extrastyle %}
+
+    {{ block.super }}
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/admin.css' %}">
+
+{% endblock %}
+
+
+{% block branding %}
+
+    <h1 id="site-name">
+
+        <a href="{% url 'admin:index' %}">
+            👟 ShoeStore Administration
+        </a>
+
+    </h1>
+
+{% endblock %}
+
+
+{% block nav-global %}
+{% endblock %}
+
+
+{% block content %}
+
+    {% if request.path == '/admin/' %}
+
+        <div class="shoestore-dashboard">
+
+            <h2 class="dashboard-title">
+                📊 ShoeStore Dashboard
+            </h2>
+
+            <p class="dashboard-subtitle">
+                Overview of your online shoe shop
+            </p>
+
+
+            <div class="stats-grid">
+
+
+                <!-- Total Shoes -->
+
+                <div class="stat-card shoes-card">
+
+                    <div class="stat-icon">
+                        👟
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-number">
+                            {{ admin_total_shoes }}
+                        </div>
+
+                        <div class="stat-label">
+                            Total Shoes
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Orders -->
+
+                <div class="stat-card orders-card">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-number">
+                            {{ admin_total_orders }}
+                        </div>
+
+                        <div class="stat-label">
+                            Total Orders
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Customers -->
+
+                <div class="stat-card customers-card">
+
+                    <div class="stat-icon">
+                        👤
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-number">
+                            {{ admin_total_customers }}
+                        </div>
+
+                        <div class="stat-label">
+                            Customers
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Sales -->
+
+                <div class="stat-card sales-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-number">
+                            ₹{{ admin_total_sales }}
+                        </div>
+
+                        <div class="stat-label">
+                            Total Sales
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+
+    {{ block.super }}
+
+{% endblock %}
+

@@ -1,317 +1,966 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Online Shoe Shop</title>
+    <title>ShoeStore - Online Shoe Shop</title>
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-```
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
+
 <body>
 
-<!-- ================= NAVBAR ================= -->
 
-<nav class="navbar">
+    <!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-```
-<div class="logo">
-    <span>👟</span> ShoeStore
-</div>
-
-<div class="search-box">
-    <input type="text" placeholder="Search shoes...">
-    <button>🔍</button>
-</div>
-
-<div class="nav-actions">
-    <button class="icon-btn">♡</button>
-    <button class="cart-btn">
-        🛒 Cart <span>0</span>
-    </button>
-    <div class="profile">
-        👤
-    </div>
-</div>
-```
-
-</nav>
-
-<!-- ================= MAIN LAYOUT ================= -->
-
-<div class="dashboard">
-
-```
-<!-- SIDEBAR -->
-
-<aside class="sidebar">
-
-    <h3>MENU</h3>
-
-    <a href="#" class="active">
-        🏠 Dashboard
-    </a>
-
-    <a href="#">
-        👟 All Shoes
-    </a>
-
-    <a href="#">
-        ⭐ Popular
-    </a>
-
-    <a href="#">
-        🔥 Best Sellers
-    </a>
-
-    <a href="#">
-        🆕 New Arrivals
-    </a>
-
-    <a href="#">
-        💰 Offers
-    </a>
-
-    <div class="sidebar-bottom">
-
-        <a href="#">
-            ⚙ Settings
-        </a>
-
-        <a href="#">
-            🚪 Logout
-        </a>
-
-    </div>
-
-</aside>
+    <nav class="navbar">
 
 
-<!-- ================= CONTENT ================= -->
+        <!-- LOGO -->
 
-<main class="content">
+        <div class="logo">
 
-    <!-- HEADER -->
+            <span>👟</span>
 
-    <div class="page-header">
+            <span>ShoeStore</span>
 
-        <div>
-            <p class="small-title">WELCOME BACK 👋</p>
-            <h1>Find Your Perfect Shoes</h1>
-            <p class="subtitle">
-                Discover the latest collection of stylish and comfortable shoes.
-            </p>
         </div>
 
-        <button class="shop-btn">
-            Shop Now →
-        </button>
 
-    </div>
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <input type="text" placeholder="Search shoes...">
+
+            <button>
+                🔍
+            </button>
+
+        </div>
 
 
-    <!-- ================= STATS ================= -->
+        <!-- NAV ACTIONS -->
 
-    <div class="stats">
+        <div class="nav-actions">
 
-        <div class="stat-card">
-            <div class="stat-icon">👟</div>
-            <div>
-                <p>Total Products</p>
-                <h2>{{ shoes|length }}</h2>
+
+            <!-- Wishlist -->
+
+            <button class="icon-btn" title="Wishlist">
+                ♡
+            </button>
+
+
+            <!-- Cart -->
+
+            <a href="{% url 'cart' %}" class="cart-btn">
+
+                🛒
+
+                <span>
+                    Cart
+                </span>
+
+                <span>
+                    {{ cart_count }}
+                </span>
+
+            </a>
+
+
+            {% if user.is_authenticated %}
+
+
+            <!-- Profile -->
+
+            <a href="{% url 'profile' %}" class="profile">
+
+                👤
+
+                {{ user.username }}
+
+            </a>
+
+
+            <!-- My Orders -->
+
+            <a href="{% url 'my_orders' %}" class="nav-login">
+
+                📦
+
+                My Orders
+
+            </a>
+
+
+            <!-- Logout -->
+
+            <a href="{% url 'logout' %}" class="nav-login">
+
+                Logout
+
+            </a>
+
+
+            {% else %}
+
+
+            <!-- Login -->
+
+            <a href="{% url 'login' %}" class="nav-login">
+
+                👤 Login
+
+            </a>
+
+
+            <!-- Register -->
+
+            <a href="{% url 'register' %}" class="nav-register">
+
+                Register
+
+            </a>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+    <div class="dashboard">
+
+
+        <!-- =================================================
+         SIDEBAR
+    ================================================= -->
+
+        <aside class="sidebar">
+
+
+            <!-- SIDEBAR LOGO -->
+
+            <div class="sidebar-logo">
+
+                👟
+
+                <span>
+                    ShoeStore
+                </span>
+
             </div>
-        </div>
 
-        <div class="stat-card">
-            <div class="stat-icon">🔥</div>
-            <div>
-                <p>Best Sellers</p>
-                <h2>24</h2>
+
+            <h3>
+                MENU
+            </h3>
+
+
+            <a href="#" class="active">
+
+                🏠
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="#products">
+
+                👟
+
+                <span>
+                    All Shoes
+                </span>
+
+            </a>
+
+
+            <a href="#products">
+
+                ⭐
+
+                <span>
+                    Popular
+                </span>
+
+            </a>
+
+
+            <a href="#products">
+
+                🔥
+
+                <span>
+                    Best Sellers
+                </span>
+
+            </a>
+
+
+            <a href="#products">
+
+                🆕
+
+                <span>
+                    New Arrivals
+                </span>
+
+            </a>
+
+
+            <a href="#products">
+
+                💰
+
+                <span>
+                    Offers
+                </span>
+
+            </a>
+
+
+            {% if user.is_authenticated %}
+
+            <a href="{% url 'my_orders' %}">
+
+                📦
+
+                <span>
+                    My Orders
+                </span>
+
+            </a>
+
+            {% endif %}
+
+
+
+            <!-- SIDEBAR BOTTOM -->
+
+            <div class="sidebar-bottom">
+
+
+
+
+
+
+
+
             </div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">⭐</div>
-            <div>
-                <p>Customer Rating</p>
-                <h2>4.8</h2>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">🚚</div>
-            <div>
-                <p>Free Delivery</p>
-                <h2>₹999+</h2>
-            </div>
-        </div>
-
-    </div>
 
 
-    <!-- ================= CATEGORY ================= -->
-
-    <div class="section-header">
-
-        <div>
-            <h2>Shop By Category</h2>
-            <p>Choose your favourite style</p>
-        </div>
-
-        <a href="#">View All →</a>
-
-    </div>
+        </aside>
 
 
-    <div class="categories">
 
-        <button class="category-btn active">
-            All Shoes
-        </button>
+        <!-- =================================================
+         MAIN CONTENT
+    ================================================= -->
 
-        <button class="category-btn">
-            Sneakers
-        </button>
-
-        <button class="category-btn">
-            Running
-        </button>
-
-        <button class="category-btn">
-            Casual
-        </button>
-
-        <button class="category-btn">
-            Sports
-        </button>
-
-        <button class="category-btn">
-            Formal
-        </button>
-
-    </div>
+        <main class="content">
 
 
-    <!-- ================= PRODUCTS ================= -->
+            <!-- =================================================
+             HERO SECTION
+        ================================================= -->
 
-    <div class="section-header products-heading">
-
-        <div>
-            <h2>Featured Collection</h2>
-            <p>Explore our latest shoes</p>
-        </div>
-
-        <select>
-            <option>Sort by: Latest</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-        </select>
-
-    </div>
+            <section class="hero-section">
 
 
-    <div class="product-container">
+                <div class="hero-content">
 
-        {% for shoe in shoes %}
 
-        <div class="product-card">
+                    <span class="hero-badge">
 
-            <div class="image-container">
+                        🔥 NEW COLLECTION
 
-                {% if shoe.image %}
-                    <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
-                {% else %}
-                    <div class="no-image">
+                    </span>
+
+
+                    <p class="small-title">
+
+                        WELCOME BACK 👋
+
+                    </p>
+
+
+                    <h1>
+
+                        Find Your
+                        <span>
+                            Perfect Shoes
+                        </span>
+
+                    </h1>
+
+
+                    <p class="subtitle">
+
+                        Discover stylish, comfortable and
+                        premium shoes made for every step
+                        of your journey.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+
+                        <a href="#products" class="shop-btn">
+
+                            Shop Now
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a href="#categories" class="explore-btn">
+
+                            Explore Categories
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- HERO VISUAL -->
+
+                <div class="hero-visual">
+
+                    <div class="hero-circle">
+
+                        👟
+
+                    </div>
+
+
+                    <div class="floating-card card-one">
+
+                        ⭐
+
+                        <div>
+
+                            <strong>
+                                4.8
+                            </strong>
+
+                            <small>
+                                Rating
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-two">
+
+                        🚚
+
+                        <div>
+
+                            <strong>
+                                Free
+                            </strong>
+
+                            <small>
+                                Delivery
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             STATS
+        ================================================= -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
                         👟
                     </div>
-                {% endif %}
-
-                <button class="wishlist">
-                    ♡
-                </button>
-
-                {% if shoe.stock > 0 %}
-                    <span class="stock-badge">
-                        In Stock
-                    </span>
-                {% else %}
-                    <span class="stock-badge out">
-                        Out of Stock
-                    </span>
-                {% endif %}
-
-            </div>
-
-
-            <div class="product-info">
-
-                <p class="category">
-                    {{ shoe.category }}
-                </p>
-
-                <h3>
-                    {{ shoe.name }}
-                </h3>
-
-                <div class="rating">
-                    ⭐⭐⭐⭐⭐
-                    <span>(4.8)</span>
-                </div>
-
-                <p class="description">
-                    {{ shoe.description }}
-                </p>
-
-                <div class="product-bottom">
 
                     <div>
-                        <p class="price">
-                            ₹{{ shoe.price }}
+
+                        <p>
+                            Total Products
                         </p>
 
-                        <p class="stock">
-                            {{ shoe.stock }} available
-                        </p>
+                        <h2>
+                            {{ shoes|length }}
+                        </h2>
+
                     </div>
-
-                    {% if shoe.stock > 0 %}
-                        <button class="add-cart">
-                            🛒
-                        </button>
-                    {% else %}
-                        <button class="add-cart disabled">
-                            —
-                        </button>
-                    {% endif %}
 
                 </div>
 
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        🔥
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Best Sellers
+                        </p>
+
+                        <h2>
+                            24+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon pink">
+                        ⭐
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Customer Rating
+                        </p>
+
+                        <h2>
+                            4.8
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Free Delivery
+                        </p>
+
+                        <h2>
+                            ₹999+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+             CATEGORY SECTION
+        ================================================= -->
+
+            <section class="category-section" id="categories">
+
+
+                <div class="section-header">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            COLLECTION
+                        </span>
+
+                        <h2>
+                            Shop By Category
+                        </h2>
+
+                        <p>
+                            Find the perfect style for every occasion.
+                        </p>
+
+                    </div>
+
+
+                    <a href="#products">
+
+                        View All
+
+                        →
+
+                    </a>
+
+
+                </div>
+
+
+
+                <div class="categories">
+
+                    <!-- All Shoes -->
+
+                    <a href="{% url 'home' %}" class="category-btn {% if not selected_category %}active{% endif %}">
+
+                        👟
+
+                        <span>
+                            All Shoes
+                        </span>
+
+                    </a>
+
+
+                    <!-- Dynamic Categories -->
+
+                    {% for category in categories %}
+
+                    <a href="?category={{ category }}"
+                        class="category-btn {% if selected_category == category %}active{% endif %}">
+
+                        {% if category == 'sneakers' %}
+                        👟
+                        {% elif category == 'running' %}
+                        🏃
+                        {% elif category == 'formal' %}
+                        👔
+                        {% elif category == 'boots' %}
+                        🥾
+                        {% elif category == 'sandals' %}
+                        🩴
+                        {% elif category == 'kids' %}
+                        👶
+                        {% else %}
+                        👟
+                        {% endif %}
+
+                        <span>
+                            {{ category|title }}
+                        </span>
+
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+
+
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             PRODUCTS HEADER
+        ================================================= -->
+
+            <section class="products-section" id="products">
+
+
+                <div class="section-header products-heading">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            OUR PRODUCTS
+                        </span>
+
+                        <h2>
+                            Featured Collection
+                        </h2>
+
+                        <p>
+                            Explore our latest and most popular shoes.
+                        </p>
+
+                    </div>
+
+
+                    <select>
+
+                        <option>
+                            Sort by: Latest
+                        </option>
+
+                        <option>
+                            Price: Low to High
+                        </option>
+
+                        <option>
+                            Price: High to Low
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                 PRODUCT GRID
+            ================================================= -->
+
+                <div class="product-container">
+
+
+                    {% for shoe in shoes %}
+
+
+                    <div class="product-card">
+
+
+                        <!-- PRODUCT IMAGE -->
+
+                        <div class="image-container">
+
+
+                            {% if shoe.image %}
+
+                            <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
+
+                            {% else %}
+
+                            <div class="no-image">
+
+                                👟
+
+                            </div>
+
+                            {% endif %}
+
+
+                            <!-- WISHLIST -->
+
+                            <button class="wishlist" title="Add to wishlist">
+
+                                ♡
+
+                            </button>
+
+
+                            <!-- STOCK -->
+
+                            {% if shoe.stock > 0 %}
+
+                            <span class="stock-badge">
+
+                                ✓ In Stock
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="stock-badge out">
+
+                                Out of Stock
+
+                            </span>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- PRODUCT INFO -->
+
+                        <div class="product-info">
+
+
+                            <p class="category">
+
+                                {{ shoe.category }}
+
+                            </p>
+
+
+                            <h3>
+
+                                {{ shoe.name }}
+
+                            </h3>
+
+
+                            <!-- RATING -->
+
+                            <div class="rating">
+
+                                ⭐⭐⭐⭐⭐
+
+                                <span>
+                                    4.8
+                                </span>
+
+                            </div>
+
+
+                            <!-- DESCRIPTION -->
+
+                            <p class="description">
+
+                                {{ shoe.description }}
+
+                            </p>
+
+
+
+                            <!-- PRODUCT BOTTOM -->
+
+                            <div class="product-bottom">
+
+
+                                <div>
+
+                                    <p class="price">
+
+                                        ₹{{ shoe.price }}
+
+                                    </p>
+
+
+                                    <p class="stock">
+
+                                        {% if shoe.stock > 0 %}
+
+                                        {{ shoe.stock }}
+                                        available
+
+                                        {% else %}
+
+                                        Currently unavailable
+
+                                        {% endif %}
+
+                                    </p>
+
+                                </div>
+
+
+
+                                {% if shoe.stock > 0 %}
+
+
+                                <a href="{% url 'add_to_cart' shoe.id %}" class="add-cart" title="Add to Cart">
+
+                                    🛒
+
+                                </a>
+
+
+                                {% else %}
+
+
+                                <button class="add-cart disabled" disabled>
+
+                                    —
+
+                                </button>
+
+
+                                {% endif %}
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% empty %}
+
+
+                    <!-- EMPTY PRODUCTS -->
+
+                    <div class="empty-products">
+
+
+                        <div>
+                            👟
+                        </div>
+
+
+                        <h2>
+                            No Shoes Available
+                        </h2>
+
+
+                        <p>
+                            Add products from Django Admin.
+                        </p>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             FOOTER BANNER
+        ================================================= -->
+
+            <section class="promo-banner">
+
+
+                <div>
+
+                    <span>
+                        👟
+                    </span>
+
+
+                    <div>
+
+                        <h2>
+                            Step Into Something New
+                        </h2>
+
+                        <p>
+                            Find your perfect pair and walk with confidence.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a href="#products">
+
+                    Shop Collection →
+
+                </a>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+    <!-- About Us Preview -->
+    <section class="about-preview">
+
+        <div class="about-preview-content">
+
+            <div class="about-preview-text">
+
+                <span class="about-tag">ABOUT US</span>
+
+                <h2>Welcome to ShoeStore 👟</h2>
+
+                <p>
+                    ShoeStore is an online shoe shopping platform designed
+                    to make shoe shopping simple, convenient and enjoyable.
+                    Customers can explore different shoes, check prices
+                    and stock availability, and add products to their cart.
+                </p>
+
+                <a href="{% url 'about' %}" class="about-btn">
+                    Learn More →
+                </a>
+
+            </div>
+
+            <div class="about-preview-icon">
+                👟
             </div>
 
         </div>
 
-        {% empty %}
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
 
-        <div class="empty-products">
-            <h2>No shoes available</h2>
-            <p>Add products from Django Admin.</p>
+            <div class="footer-section">
+                <h3>👟 ShoeStore</h3>
+                <p>Your trusted online shoe shopping platform.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>
+                    ShoeStore is an online shoe shop where customers can
+                    explore and purchase different types of shoes easily.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="{% url 'cart' %}">Cart</a>
+            </div>
+
         </div>
 
-        {% endfor %}
-
-    </div>
-
-</main>
-```
-
-</div>
+        <div class="footer-bottom">
+            <p>© 2026 ShoeStore. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>

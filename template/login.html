@@ -1,0 +1,145 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - ShoeStore</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+
+            <!-- LOGO -->
+
+            <div class="login-logo">
+                👟 ShoeStore
+            </div>
+
+
+            <!-- LOGIN ICON -->
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1 class="login-title">
+                Welcome Back!
+            </h1>
+
+
+            <p class="login-subtitle">
+                Login to your ShoeStore account
+            </p>
+
+
+            <!-- ERROR / SUCCESS MESSAGE -->
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="login-message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <!-- LOGIN FORM -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    🔐 Login
+                </button>
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <div class="login-footer">
+
+                Don't have an account?
+
+                <a href="{% url 'register' %}">
+                    Create Account
+                </a>
+
+            </div>
+
+
+            <!-- HOME -->
+
+            <a
+                href="{% url 'home' %}"
+                class="back-home"
+            >
+                ← Back to Shop
+            </a>
+
+

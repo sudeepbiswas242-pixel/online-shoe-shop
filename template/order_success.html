@@ -1,0 +1,163 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed - ShoeStore</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/order_success.css' %}">
+
+</head>
+
+<body>
+
+    <div class="success-container">
+
+        <div class="success-box">
+
+
+            <!-- Logo -->
+
+            <div class="success-logo">
+                👟 ShoeStore
+            </div>
+
+
+            <!-- Success Icon -->
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <!-- Title -->
+
+            <h1 class="success-title">
+                Order Confirmed!
+            </h1>
+
+
+            <p class="success-subtitle">
+                Thank you for your purchase.
+                Your order has been placed successfully.
+            </p>
+
+
+            <!-- Order Information -->
+
+            <div class="order-info">
+
+
+                <!-- Order ID -->
+
+                <div class="info-card">
+
+                    <p class="info-label">
+                        Order ID
+                    </p>
+
+                    <p class="info-value">
+                        #{{ order.id }}
+                    </p>
+
+                </div>
+
+
+                <!-- Total Amount -->
+
+                <div class="info-card">
+
+                    <p class="info-label">
+                        Total Amount
+                    </p>
+
+                    <p class="info-value">
+                        ₹{{ order.total_amount }}
+                    </p>
+
+                </div>
+
+
+                <!-- Payment Method -->
+
+                <div class="payment-card">
+
+                    <div class="payment-icon">
+                        💳
+                    </div>
+
+                    <div class="payment-text">
+
+                        <span class="payment-label">
+                            Payment Method
+                        </span>
+
+                        <span class="payment-value">
+                            {{ order.get_payment_method_display }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Order Status -->
+
+            <span class="status-badge">
+
+                📦 {{ order.get_status_display }}
+
+            </span>
+
+
+            <!-- Message -->
+
+            <p class="success-message">
+
+                Your order details have been saved successfully.
+                You can track your order from My Orders.
+
+            </p>
+
+
+            <!-- Buttons -->
+
+            <div class="success-buttons">
+
+                <a href="{% url 'home' %}"
+                   class="success-btn home-btn">
+
+                    🏠 Continue Shopping
+
+                </a>
+
+
+                <a href="{% url 'my_orders' %}"
+                   class="success-btn orders-btn">
+
+                    📦 My Orders
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

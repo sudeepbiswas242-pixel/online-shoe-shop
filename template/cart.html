@@ -1,0 +1,196 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Cart - ShoeStore</title>
+
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+</head>
+
+<body>
+
+    <div class="cart-container">
+
+        <div class="cart-box">
+
+
+            <!-- Logo -->
+
+            <div class="cart-logo">
+                👟 ShoeStore
+            </div>
+
+
+            <!-- Title -->
+
+            <h1 class="cart-title">
+                🛒 My Shopping Cart
+            </h1>
+
+            <p class="cart-subtitle">
+                Review your items before checkout
+            </p>
+
+
+            {% if cart_items %}
+
+
+                <!-- Cart Items -->
+
+                {% for item in cart_items %}
+
+                    <div class="cart-item">
+
+
+                        <div class="cart-item-info">
+
+                            <div>
+
+                                <div class="cart-item-name">
+                                    {{ item.shoe.name }}
+                                </div>
+
+                                <div style="margin-top: 6px; color: #777;">
+                                    {{ item.shoe.category }}
+                                </div>
+
+                            </div>
+
+
+                            <div class="cart-price">
+                                ₹{{ item.shoe.price }}
+                            </div>
+
+                        </div>
+
+
+                        <!-- Quantity -->
+
+                        <div class="quantity-control">
+
+                            <a
+                                href="{% url 'update_cart_quantity' item.id 'decrease' %}"
+                            >
+                                −
+                            </a>
+
+                            <span>
+                                {{ item.quantity }}
+                            </span>
+
+                            <a
+                                href="{% url 'update_cart_quantity' item.id 'increase' %}"
+                            >
+                                +
+                            </a>
+
+                        </div>
+
+
+                        <!-- Item Total -->
+
+                        <div style="margin-top: 12px; font-weight: 600;">
+
+                            Item Total:
+                            ₹{% widthratio item.shoe.price 1 item.quantity %}
+
+                        </div>
+
+
+                        <!-- Remove -->
+
+                        <a
+                            href="{% url 'remove_from_cart' item.id %}"
+                            class="remove-cart"
+                        >
+                            🗑 Remove
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+
+                <!-- Grand Total -->
+
+                <div class="cart-total">
+
+                    <span>
+                        💰 Total Amount
+                    </span>
+
+                    <span>
+                        ₹{{ total }}
+                    </span>
+
+                </div>
+
+
+                <!-- Checkout -->
+
+                <a
+                    href="{% url 'checkout' %}"
+                    class="checkout-btn"
+                >
+                    🛍 Proceed to Checkout
+                </a>
+
+
+                <!-- Continue Shopping -->
+
+                <a
+                    href="{% url 'home' %}"
+                    class="continue-shopping"
+                >
+                    ← Continue Shopping
+                </a>
+
+
+            {% else %}
+
+
+                <!-- Empty Cart -->
+
+                <div class="empty-cart">
+
+                    <div class="empty-cart-icon">
+                        🛒
+                    </div>
+
+                    <h2>
+                        Your Cart is Empty
+                    </h2>
+
+                    <p>
+                        You haven't added any shoes to your cart yet.
+                    </p>
+
+                    <a
+                        href="{% url 'home' %}"
+                        class="checkout-btn"
+                    >
+                        👟 Start Shopping
+                    </a>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

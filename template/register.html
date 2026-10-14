@@ -1,0 +1,191 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - ShoeStore</title>
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <div class="register-box">
+
+
+            <!-- LOGO -->
+
+            <div class="register-logo">
+                👟 ShoeStore
+            </div>
+
+
+            <!-- REGISTER ICON -->
+
+            <div class="register-icon">
+                ✨
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1 class="register-title">
+                Create Account
+            </h1>
+
+
+            <p class="register-subtitle">
+                Join ShoeStore and start shopping
+            </p>
+
+
+            <!-- MESSAGES -->
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="register-message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <!-- REGISTER FORM -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- REGISTER BUTTON -->
+
+                <button
+                    type="submit"
+                    class="register-btn"
+                >
+                    ✨ Create Account
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+
+            <div class="register-footer">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- HOME -->
+
+            <a
+                href="{% url 'home' %}"
+                class="back-home"
+            >
+                ← Back to Shop
+            </a>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,526 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Checkout - ShoeStore</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/cart.css' %}"
+    >
+
+    <!-- Razorpay Checkout -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    <style>
+
+        /* ================================
+           PAYMENT SECTION
+        ================================= */
+
+        .payment-section {
+            margin-top: 25px;
+        }
+
+        .payment-title {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .payment-options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border: 2px solid #eeeeee;
+            border-radius: 13px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .payment-option:hover {
+            border-color: #667eea;
+            background: #f5f6ff;
+        }
+
+        .payment-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .payment-icon {
+            font-size: 24px;
+        }
+
+        .payment-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .payment-name {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .payment-description {
+            font-size: 13px;
+            color: #777;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="cart-container">
+
+
+    <div class="cart-box">
+
+
+        <!-- LOGO -->
+
+        <div class="cart-logo">
+
+            👟 ShoeStore
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1 class="cart-title">
+
+            🛍 Checkout
+
+        </h1>
+
+
+        <p class="cart-subtitle">
+
+            Enter your delivery and payment details
+
+        </p>
+
+
+        <!-- ORDER TOTAL -->
+
+        <div class="cart-total">
+
+            <span>
+                🛒 Order Total
+            </span>
+
+            <span>
+                ₹{{ total }}
+            </span>
+
+        </div>
+
+
+        <!-- CHECKOUT FORM -->
+
+        <form
+            method="POST"
+            id="checkout-form"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- FULL NAME -->
+
+            <div
+                class="form-group"
+                style="margin-top: 25px;"
+            >
+
+                <label
+                    for="full_name"
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 700;
+                        color: #333;
+                    "
+                >
+
+                    👤 Full Name
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    placeholder="Enter your full name"
+                    required
+                    style="
+                        width: 100%;
+                        padding: 14px;
+                        border: 1px solid #ddd;
+                        border-radius: 12px;
+                        font-size: 15px;
+                        outline: none;
+                        box-sizing: border-box;
+                    "
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div
+                class="form-group"
+                style="margin-top: 20px;"
+            >
+
+                <label
+                    for="phone"
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 700;
+                        color: #333;
+                    "
+                >
+
+                    📞 Phone Number
+
+                </label>
+
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    required
+                    style="
+                        width: 100%;
+                        padding: 14px;
+                        border: 1px solid #ddd;
+                        border-radius: 12px;
+                        font-size: 15px;
+                        outline: none;
+                        box-sizing: border-box;
+                    "
+                >
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div
+                class="form-group"
+                style="margin-top: 20px;"
+            >
+
+                <label
+                    for="address"
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 700;
+                        color: #333;
+                    "
+                >
+
+                    📍 Delivery Address
+
+                </label>
+
+
+                <textarea
+                    id="address"
+                    name="address"
+                    rows="5"
+                    placeholder="Enter your complete delivery address"
+                    required
+                    style="
+                        width: 100%;
+                        padding: 14px;
+                        border: 1px solid #ddd;
+                        border-radius: 12px;
+                        font-size: 15px;
+                        outline: none;
+                        resize: vertical;
+                        box-sizing: border-box;
+                        font-family: Arial, Helvetica, sans-serif;
+                    "
+                ></textarea>
+
+            </div>
+
+
+            <!-- PAYMENT METHOD -->
+
+            <div class="payment-section">
+
+
+                <label class="payment-title">
+
+                    💳 Select Payment Method
+
+                </label>
+
+
+                <div class="payment-options">
+
+
+                    <!-- COD -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="cod"
+                            checked
+                        >
+
+                        <span class="payment-icon">
+                            💵
+                        </span>
+
+                        <span class="payment-info">
+
+                            <span class="payment-name">
+                                Cash on Delivery
+                            </span>
+
+                            <span class="payment-description">
+                                Pay when your order is delivered
+                            </span>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- UPI -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="upi"
+                        >
+
+                        <span class="payment-icon">
+                            📱
+                        </span>
+
+                        <span class="payment-info">
+
+                            <span class="payment-name">
+                                UPI
+                            </span>
+
+                            <span class="payment-description">
+                                Pay using UPI
+                            </span>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- CARD -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="card"
+                        >
+
+                        <span class="payment-icon">
+                            💳
+                        </span>
+
+                        <span class="payment-info">
+
+                            <span class="payment-name">
+                                Card / Online Payment
+                            </span>
+
+                            <span class="payment-description">
+                                Pay securely using Razorpay
+                            </span>
+
+                        </span>
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- PLACE ORDER -->
+
+            <button
+                type="submit"
+                class="checkout-btn"
+                style="
+                    border: none;
+                    cursor: pointer;
+                "
+            >
+
+                ✅ Place Order
+
+            </button>
+
+
+        </form>
+
+
+        <!-- BACK TO CART -->
+
+        <a
+            href="{% url 'cart' %}"
+            class="continue-shopping"
+        >
+
+            ← Back to Cart
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+{% if razorpay_order_id %}
+
+<script>
+
+    const options = {
+
+        key: "{{ razorpay_key_id }}",
+
+        amount: "{{ razorpay_amount }}",
+
+        currency: "INR",
+
+        name: "ShoeStore",
+
+        description: "ShoeStore Order",
+
+        order_id: "{{ razorpay_order_id }}",
+
+      
+handler: function (response) {
+
+    const form = document.createElement("form");
+
+    form.method = "POST";
+    form.action = "{% url 'payment_success' %}";
+
+    const csrfToken = document.querySelector(
+        '[name=csrfmiddlewaretoken]'
+    ).value;
+
+    const csrfInput = document.createElement("input");
+    csrfInput.type = "hidden";
+    csrfInput.name = "csrfmiddlewaretoken";
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+
+
+    const paymentInput = document.createElement("input");
+    paymentInput.type = "hidden";
+    paymentInput.name = "razorpay_payment_id";
+    paymentInput.value = response.razorpay_payment_id;
+    form.appendChild(paymentInput);
+
+
+    const orderInput = document.createElement("input");
+    orderInput.type = "hidden";
+    orderInput.name = "razorpay_order_id";
+    orderInput.value = response.razorpay_order_id;
+    form.appendChild(orderInput);
+
+
+    const signatureInput = document.createElement("input");
+    signatureInput.type = "hidden";
+    signatureInput.name = "razorpay_signature";
+    signatureInput.value = response.razorpay_signature;
+    form.appendChild(signatureInput);
+
+
+    document.body.appendChild(form);
+
+    form.submit();
+},
+
+
+
+        prefill: {
+
+            name: document.getElementById("full_name").value,
+
+            contact: document.getElementById("phone").value
+
+        },
+
+        theme: {
+
+            color: "#667eea"
+
+        }
+
+    };
+
+
+    const razorpay = new Razorpay(options);
+
+
+    razorpay.open();
+
+
+</script>
+
+{% endif %}
+
+
+</body>
+
+</html>
+

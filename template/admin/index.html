@@ -1,0 +1,110 @@
+
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="shoestore-dashboard">
+
+    <h2 class="dashboard-title">
+        📊 ShoeStore Dashboard
+    </h2>
+
+    <p class="dashboard-subtitle">
+        Overview of your online shoe shop
+    </p>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card shoes-card">
+
+            <div class="stat-icon">
+                👟
+            </div>
+
+            <div class="stat-info">
+
+                <div class="stat-number">
+                    {{ admin_total_shoes }}
+                </div>
+
+                <div class="stat-label">
+                    Total Shoes
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card orders-card">
+
+            <div class="stat-icon">
+                📦
+            </div>
+
+            <div class="stat-info">
+
+                <div class="stat-number">
+                    {{ admin_total_orders }}
+                </div>
+
+                <div class="stat-label">
+                    Total Orders
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card customers-card">
+
+            <div class="stat-icon">
+                👤
+            </div>
+
+            <div class="stat-info">
+
+                <div class="stat-number">
+                    {{ admin_total_customers }}
+                </div>
+
+                <div class="stat-label">
+                    Customers
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card sales-card">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <div class="stat-info">
+
+                <div class="stat-number">
+                    ₹{{ admin_total_sales }}
+                </div>
+
+                <div class="stat-label">
+                    Total Sales
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,418 @@
+
+/* ==========================================
+   ORDER SUCCESS PAGE - SHOESTORE
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2,
+            #f093fb
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.success-container {
+    width: 100%;
+
+    max-width: 650px;
+}
+
+
+/* ==========================================
+   SUCCESS BOX
+========================================== */
+
+.success-box {
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 28px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.22);
+
+    animation: slideUp 0.5s ease;
+}
+
+
+@keyframes slideUp {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.success-logo {
+    font-size: 28px;
+
+    font-weight: 800;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #667eea,
+            #764ba2,
+            #f093fb
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ==========================================
+   SUCCESS ICON
+========================================== */
+
+.success-icon {
+    width: 90px;
+
+    height: 90px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 48px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4fc79,
+            #96e6a1
+        );
+
+    box-shadow:
+        0 10px 25px rgba(70, 180, 100, 0.25);
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.success-title {
+    font-size: 32px;
+
+    color: #222;
+
+    margin-bottom: 10px;
+}
+
+
+.success-subtitle {
+    color: #777;
+
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+
+/* ==========================================
+   ORDER INFORMATION
+========================================== */
+
+.order-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    text-align: left;
+
+    margin-bottom: 25px;
+}
+
+
+.info-card {
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f8ff,
+            #faf5ff
+        );
+
+    border: 1px solid #eeeeee;
+
+    transition: 0.2s;
+}
+
+
+.info-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.info-label {
+    font-size: 13px;
+
+    color: #888;
+
+    margin-bottom: 7px;
+}
+
+
+.info-value {
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #333;
+}
+
+
+/* ==========================================
+   PAYMENT CARD
+========================================== */
+
+.payment-card {
+    grid-column: span 2;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f7efff
+        );
+
+    border: 1px solid #e0ddff;
+
+    text-align: left;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.payment-icon {
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: white;
+
+    font-size: 25px;
+}
+
+
+.payment-text {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.payment-label {
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+.payment-value {
+    font-weight: 700;
+
+    color: #764ba2;
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.status-badge {
+    display: inline-block;
+
+    margin: 5px 0 25px;
+
+    padding: 9px 18px;
+
+    border-radius: 30px;
+
+    background: #fff4d6;
+
+    color: #b77900;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+.success-message {
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.success-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    justify-content: center;
+}
+
+
+.success-btn {
+    flex: 1;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+
+.home-btn {
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+
+.orders-btn {
+    background: #f1f3f8;
+
+    color: #555;
+}
+
+
+.success-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .success-box {
+        padding: 28px 20px;
+
+        border-radius: 22px;
+    }
+
+    .success-title {
+        font-size: 27px;
+    }
+
+    .order-info {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-card {
+        grid-column: span 1;
+    }
+
+    .success-buttons {
+        flex-direction: column;
+    }
+
+}
+
